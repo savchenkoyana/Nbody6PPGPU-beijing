@@ -110,8 +110,8 @@
              IF(KZ(24).EQ.2)THEN
                 KSTAR(I) = 14
                 TEV(I) = 1.D10
-*     For the time being here only option for random spin.
-                ASPN(I) = RAND()
+*     For the time being here only option is zero spin.
+                ASPN(I) = 0.D0
              END IF
              M1 = BODY(I)*ZMBAR
              M0 = M1
