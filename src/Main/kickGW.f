@@ -57,14 +57,14 @@
          mbh1 = BODY(I1)*ZMBAR
          mbh2 = BODY(I2)*ZMBAR
     
-         IF(ASPN(I1).LE.0.0.OR.ASPN(I1).GT.1.0)THEN     
-           ASPN(I1) = 0.5
-           SPIN(I1) = 0.5
-         ENDIF
-         IF(ASPN(I2).LE.0.0.OR.ASPN(I2).GT.1.0)THEN
-           ASPN(I2) = 0.5
-           SPIN(I2) = 0.5
-         ENDIF   
+*         IF(ASPN(I1).LE.0.0.OR.ASPN(I1).GT.1.0)THEN     
+*           ASPN(I1) = 0.5
+*           SPIN(I1) = 0.5
+*         ENDIF
+*         IF(ASPN(I2).LE.0.0.OR.ASPN(I2).GT.1.0)THEN
+*           ASPN(I2) = 0.5
+*           SPIN(I2) = 0.5
+*         ENDIF   
 
          abh1 = ASPN(I1)
          abh2 = ASPN(I2)

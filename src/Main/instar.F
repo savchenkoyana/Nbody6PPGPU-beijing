@@ -92,7 +92,7 @@
       DO 10 I = 1,N
 *
 *       Relativistic dimensionless spin only used after remnant formation in kick/kickGW (MAS).
-*       Except: KZ(24) = 2, see below (RS).
+*       Except: KZ(24) = 2 or KZ(24) = 3, see below (RS).
           ASPN(I) = 0.D0
 *       Obtain stellar parameters at current epoch.
           IF(KZ(19).EQ.2.OR.KZ(19).EQ.4)THEN
@@ -107,11 +107,14 @@
 #endif
           ELSE
 *     Start with black holes only
-             IF(KZ(24).EQ.2)THEN
+             IF(KZ(24).EQ.2.OR.KZ(24).EQ.3)THEN
                 KSTAR(I) = 14
                 TEV(I) = 1.D10
-*     For the time being here only option is zero spin.
-                ASPN(I) = 0.D0
+
+                IF(KZ(24).EQ.2) ASPN(I) = RAND()
+*     Zero-like spins for PBHs
+                IF(KZ(24).EQ.3) ASPN(I) = 0.D0
+
              END IF
              M1 = BODY(I)*ZMBAR
              M0 = M1
