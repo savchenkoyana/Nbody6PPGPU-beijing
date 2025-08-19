@@ -113,7 +113,7 @@
 
                 IF(KZ(24).EQ.2) ASPN(I) = RAND()
 *     Zero-like spins for PBHs
-                IF(KZ(24).EQ.3) ASPN(I) = 0.D0
+                IF(KZ(24).EQ.3) ASPN(I) = 1.0D-3
 
              END IF
              M1 = BODY(I)*ZMBAR
