@@ -543,7 +543,7 @@ c$$$     &           nmerge,name(j1),name(j2),name(icm)
      &                                       ,FILE=OUTTAIL)
             
             NK = 13
-            WRITE (50) NTAIL, MODEL, NK
+            WRITE (50, *) NTAIL, MODEL, NK
 *     Include cluster centre just in case.
             DO K = 1,3
                AS(K) = REAL(RG(K))
@@ -555,7 +555,7 @@ c$$$     &           nmerge,name(j1),name(j2),name(icm)
             AS(12) = REAL(TSTAR)
             AS(13) = REAL(VSTAR)
             NK = 13
-            WRITE (50)  (AS(K),K=1,NK)
+            WRITE (50, *)  (AS(K),K=1,NK)
             
             IF (NTAIL.GT.0) THEN
 *     Individual stars
@@ -565,7 +565,7 @@ c$$$     &           nmerge,name(j1),name(j2),name(icm)
                      XS(K,I) = REAL(X(K,I) - RG(K))
                      VS(K,I) = REAL(XDOT(K,I) - VG(K))
                   END DO
-                  WRITE (50) NAME(I),BODYS(I),XS(1:3,I),VS(1:3,I)
+                  WRITE (50, *) NAME(I),BODYS(I),XS(1:3,I),VS(1:3,I)
                END DO
             END IF
             CLOSE(50)

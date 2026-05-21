@@ -223,16 +223,22 @@
       dir1 = rnd
       CALL RANDOM_NUMBER(rnd)
       pm   = 1.-2.*rnd
-      dir2 = abs(pm)/pm * sqrt(1.-dir1*dir1)
+
+      dir2 = sign(1.d0, pm) * sqrt(max(1.-dir1*dir1,0.d0))
       dir  = sqrt(dir1*dir1 + dir2*dir2)
       
       
       SEpar = 2.*(a2par + q*q*a1par)/((1.+q)*(1.+q))
       
-      
-      PHI = (Deltaper1*dir1 + Deltaper2*dir2)/(Deltaper * dir)
-      CALL RANDOM_NUMBER(rnd)
-      PHI1= 2.*M_PI*rnd
+      IF (Deltaper .gt. 1d-6) THEN
+          PHI = (Deltaper1*dir1 + Deltaper2*dir2)/(Deltaper * dir)
+          CALL RANDOM_NUMBER(rnd)
+          PHI1 = 2.*M_PI*rnd
+      ELSE
+          PHI = 0.d0
+          PHI1 = 0.d0
+      ENDIF
+
       A = 1.2E4 ! km/s  
       B = -0.93 ! adim
       H = 6.9E3 !km/s
@@ -245,15 +251,14 @@
       ETA= q/((1.+q)*(1.+q)) !asimmetric mass ratio
       
       
-      VM   = A*ETA*ETA*sqrt(1.-4.*ETA)*(1.+B*ETA)      
-      
+      VM = A*ETA*ETA*sqrt(max(1.-4.*ETA,0.d0))*(1.+B*ETA)      
+
       VPER = H*ETA*ETA/(1.+q) * (a2par - q*a1par)
       
       VTER = V11 + VA*SEpar + VB*SEpar*SEpar + VC*SEpar*SEpar*SEpar
       SPPE = sqrt((a2per1 - q*a1per1)*(a2per1 - q*a1per1)
      &       + (a2per2 - q*a1per2)*(a2per2 - q*a1per2))*cos(PHI-PHI1)
       VPAR = 16.*ETA*ETA/(1.+q) * VTER * SPPE
-      
       vkiper1 = VM + VPER*cos(XI)
       vkiper2 = VPER*sin(XI)
       vkipar  = VPAR
